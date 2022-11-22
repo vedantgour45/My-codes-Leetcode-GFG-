@@ -14,8 +14,8 @@ class Solution {
         if(head==null || head.next==null) {
             return head;
         }
-        //we need to go to the last node of our LL and at the same time we calculate size ofLL
-        int size = 1;
+        //we need to go to the last node of our LL and at the same time we calculate size of LL
+        int size = 0;
         ListNode curr = head;
         while(curr.next!=null) {
             curr = curr.next;
@@ -26,16 +26,17 @@ class Solution {
         curr.next = head;
         
         //loop for k times and move the curr;
-        k %= size;
-        int times = size-k;
-        while(times>0) {
+        curr = head;
+        k = k%(size+1); // to ensure that k is not greater that size
+        int jumps = size-k;
+        while(jumps>0) {
             curr = curr.next;
-            times--;
+            jumps--;
         }
         //now we are standing at prev node of the node of which we need to delete the connction
-        head = curr.next;
+        ListNode ansHead = curr.next;
         curr.next = null;
         
-        return head;
+        return ansHead;
     }
 }
