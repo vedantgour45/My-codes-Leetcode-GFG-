@@ -10,34 +10,22 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        //if the LL has only one element and we have to delete that;
-        if(head.next==null){
-            return null;
+        ListNode dummy = new ListNode(-1);
+        ListNode p1 = dummy;
+        ListNode p2 = dummy;
+        dummy.next = head;
+        
+        while(n >= 0 && p2!=null) {
+            p2 = p2.next;
+            n--;
+        }
+        while(p2!=null) {
+            p1 = p1.next;
+            p2 = p2.next;
         }
         
-        //calculating size of the LL
-        int size = 0;
-        ListNode curr = head;
-        while(curr != null){
-            curr = curr.next;
-            size++;
-        }
+        p1.next = p1.next.next;
         
-        //if size and the element to be deleted are same
-        if(n==size){
-            return head.next;
-        }
-        
-        //reaching to the previous node of the node which we want to delete
-        int pointer = size-n;
-        ListNode prev = head;
-        int i=1;
-        while(i<pointer){
-            prev = prev.next;
-            i++;
-        }
-        
-        prev.next = prev.next.next;
-        return head;
+        return dummy.next;
     }
 }
