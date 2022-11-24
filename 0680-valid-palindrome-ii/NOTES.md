@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/113295244/203697800-978e925f-7e9c-4be9-9027-450a4e7f39e4.png)
+![image]([https://user-images.githubusercontent.com/113295244/203697800-978e925f-7e9c-4be9-9027-450a4e7f39e4.png](https://assets.leetcode.com/users/images/620dc518-3c9f-4d32-8cac-71eb6ee91216_1648864228.2340546.gif))
 
 Let's consider on example in order to understand it :-
 Input: s = "abcdecba"
