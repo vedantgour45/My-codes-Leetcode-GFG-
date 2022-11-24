@@ -36,22 +36,21 @@ public class Main {
 class Solution {
     void segregate0and1(int[] arr, int n) {
         // code here
-        int zeros = 0;
-        int ones = 0;
+        int i = 0;
+        int j = n-1;
         
-        for(int i=0; i<n; i++) {
-            if(arr[i]==0) {
-                zeros++;
+        while(i<=j) {
+            if(arr[i]==1) {
+                swap(arr,i,j);
+                j--;
             } else {
-                ones++;
+                i++;
             }
         }
-        int idx = 0;
-        for(int i=0; i<zeros; i++) {
-            arr[idx++] = 0;
-        }
-        for(int i=0; i<ones; i++){
-            arr[idx++] = 1;
-        }
+    }
+    void swap(int arr[], int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }
