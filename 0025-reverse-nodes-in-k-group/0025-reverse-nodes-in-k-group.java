@@ -8,15 +8,18 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
 class Solution {
-    ListNode oh;
-    ListNode ot;
-
-    ListNode th;
-    ListNode tt;
-
-    void addFirst(ListNode nn){
-        if(th == null){
+    //Declaring the variables globally;
+    
+    ListNode oh; //original head
+    ListNode ot; //original tail
+    
+    ListNode th; //temporary head;
+    ListNode tt; //temporary tail;
+    
+    public void addFirst(ListNode nn) {
+        if(th==null) {
             th = nn;
             tt = nn;
         } else {
@@ -24,62 +27,58 @@ class Solution {
             th = nn;
         }
     }
-
-    int getSize(ListNode head){
+    
+    public int getSize(ListNode head) {
+        int size = 0;
         ListNode curr = head;
-
-        int ans = 0;
-        while(curr!=null){
-            ans++;
-            curr=curr.next;
+        while(curr!=null) {
+            curr = curr.next;
+            size++;
         }
-
-        return ans;
+        return size;
     }
-
-
+    
     public ListNode reverseKGroup(ListNode head, int k) {
         oh = null;
         ot = null;
-
+        
         th = null;
         tt = null;
-
-        int size = getSize(head);
+        
         ListNode curr = head;
-        // base case ()
-        if(size < k){
-            return head;
-        }
-
-        while(size>=k){
-            // reverse in pair of k
-            int K=k;
-            while(K-- > 0){
-                ListNode nextOfCurr = curr.next;
+        int size = getSize(head);  //fuction to fing the length of the LL
+        
+        while(size>=k) {
+            int count = k;
+            
+            //reverse in the pair of k
+            while(count>0) {
+                ListNode nCurr = curr.next;
                 curr.next = null;
-
-                addFirst(curr);
-                curr = nextOfCurr;
-
+                
+                addFirst(curr);  // this will reverse the LL for k nodes as we have initialised int count = k;
+                curr = nCurr;
+                
                 size--;
+                count--;
             }
-
-            // add th,tt to my original
-            if(oh==null){
+            
+            //adding th & tt to original list
+            if(oh==null) {
                 oh = th;
                 ot = tt;
             } else {
                 ot.next = th;
                 ot = tt;
             }
-
+            //put the temporary variables back to null so that we can use them for next iteration freshly
             th = null;
             tt = null;
         }
-
+        
+        //adding remaing nodes of the LL
         ot.next = curr;
-
+        
         return oh;
     }
 }
