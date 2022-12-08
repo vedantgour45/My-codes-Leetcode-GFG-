@@ -56,12 +56,12 @@ class Merge_Sort
 class Solution {
     void merge(int arr[], int l, int mid, int r) {
         // Your code here
-        int ans[] = new int[r-l+1];
+        int ans[] = new int[r-l+1]; //new array after merging
         int i = l;
         int j = mid+1;
         int k = 0;
-        
-        while(i<=mid && j<=r) {
+         
+        while(i<=mid && j<=r) {   //while one of the part is not over 
             if(arr[i]<arr[j]) {
                 ans[k] = arr[i];
                 k++; i++;
@@ -70,17 +70,17 @@ class Solution {
                 k++; j++;
             }
         }
-        while(i<=mid) {
+        while(i<=mid) {     // right half is over, continue with left half
             ans[k] = arr[i];
             k++; i++;
         }
         
-        while(j<=r) {
+        while(j<=r) {        // left half is over, continue with right half
             ans[k] = arr[j];
             k++; j++;
         }
         k=0;
-        for(int x=l; x<=r; x++) {
+        for(int x=l; x<=r; x++) {   //copy the ans array in arr again
             arr[x] = ans[k];
             k++;
         }
@@ -89,9 +89,9 @@ class Solution {
         //code here
         if(l<r) {
             int mid = (l+r)/2;
-            mergeSort(arr, l, mid);
-            mergeSort(arr, mid+1, r);
-            merge(arr, l, mid, r);
+            mergeSort(arr, l, mid);   //1st half
+            mergeSort(arr, mid+1, r); //2nd half
+            merge(arr, l, mid, r);    //merge them
         }
     }
 }
