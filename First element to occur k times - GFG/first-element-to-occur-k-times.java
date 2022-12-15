@@ -26,7 +26,7 @@ public class GfG {
 
 class Solution
 {
-    public int firstElementKTime(int[] a, int n, int k) { 
+    public int firstElementKTime(int[] arr, int n, int k) { 
         // int freq[] = new int[1000001];
         // for(int i=0; i<n; i++) {
         //     freq[a[i]]++;
@@ -38,15 +38,10 @@ class Solution
         
         Map<Integer, Integer> hm = new HashMap<>();
         for(int i=0; i<n; i++) {
-            if(hm.containsKey(a[i])) {
-                int oldFreq = hm.get(a[i]);
-                hm.put(a[i], oldFreq+1);
-            } else {
-                hm.put(a[i], 1);
-            }
+           hm.put(arr[i], hm.getOrDefault(arr[i], 0)+1);
             
-            if(hm.get(a[i])==k) {
-                return a[i];
+            if(hm.get(arr[i])==k) {
+                return arr[i];
             } 
         }
         return -1;
