@@ -1,7 +1,10 @@
 class Solution {
     public int findPairs(int[] arr, int k) {
+        
         HashMap<Integer, Integer> hm = new HashMap<>();
+        
         int n = arr.length;
+        
         for(int i=0; i<n; i++) {
             hm.put(arr[i], hm.getOrDefault(arr[i], 0)+1);
         }
