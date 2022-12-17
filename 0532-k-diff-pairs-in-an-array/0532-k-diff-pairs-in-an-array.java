@@ -5,6 +5,7 @@ class Solution {
         for(int i=0; i<n; i++) {
             hm.put(arr[i], hm.getOrDefault(arr[i], 0)+1);
         }
+        
         int ans = 0;
         
         if(k==0) {
@@ -21,6 +22,7 @@ class Solution {
                 }
             }
         }
+        
         return ans;
     }
 }
