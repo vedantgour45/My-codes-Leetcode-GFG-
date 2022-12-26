@@ -58,18 +58,20 @@ class Solution {
         int ans = 0;
         
         HashMap<Integer, Integer> hm = new HashMap<>();
-        
+        //1
         for(int i=0; i<n; i++) {
+            //2
             sum = sum + arr[i];
             
+            //3
             if(sum == k) {
                 ans = i+1;
             }
-            
+            //if sum is not already present in hm then add it.
             if(!hm.containsKey(sum)) {
                 hm.put(sum, i);
             }
-            
+            //4 ifsum has crossed the value of k
             if(hm.containsKey(sum-k)) {
                 ans = Math.max(ans, i-hm.get(sum-k));
             }
