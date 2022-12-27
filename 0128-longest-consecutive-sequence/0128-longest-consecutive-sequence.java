@@ -27,26 +27,32 @@ class Solution {
 }
 
 /*
-Arrays.sort(arr);
-int count = 1;
-int max = 1;
+ Map<Integer, Boolean> hm = new HashMap<>();
+        
+for(int val : arr) {
+    hm.put(val, true);
+}
 
-if(n==1) 
-    return 1;
+ for(int val : arr) {
+   if(hm.containsKey(val-1)) {
+       hm.put(val, false);
+   }
+}
 
-if(n==0) 
-    return 0;
+int maxLength = 0;
+for(int val : arr) {
+    if(hm.get(val)==true) {
+        int tempLength = 1;
+        int tempLengthStartPoint = val;
 
-for(int i=0;i<n-1;i++) {            
-    if(nums[i]==nums[i+1]-1) {
-        count++;
-        max=Math.max(max,count);
-    } else if(nums[i]==nums[i+1]) {
-        continue;
-    }
-    else {
-        count=1;
+        while(hm.containsKey(tempLengthStartPoint + tempLength)) {
+            tempLength++;
+        }
+
+        if(tempLength>maxLength) {
+            maxLength = tempLength;
+        }
     }
 }
-return max;
+return maxLength;
 */
