@@ -10,8 +10,7 @@ class StockSpanner {
         int span = 1;
         // If the current price is greater than stack peek.
         while (!st.isEmpty() && price >= st.peek()[0]) { 
-            span += st.peek()[1];
-            st.pop();
+            span += st.pop()[1];
         }
         st.push(new int[]{price, span});
         return span;
