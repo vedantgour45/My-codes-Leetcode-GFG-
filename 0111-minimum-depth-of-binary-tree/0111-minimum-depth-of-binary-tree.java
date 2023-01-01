@@ -15,23 +15,28 @@
  */
 class Solution {
     public int minDepth(TreeNode root) {
-        if(root == null) 
-            return 0;
-        
-        if (root.left == null && root.right == null)
-            return 1;
- 
-        // If left subtree is NULL, recur for right subtree
-        if (root.left == null)
-            return minDepth(root.right) + 1;
- 
-        // If right subtree is NULL, recur for left subtree
-        if (root.right == null)
-            return minDepth(root.left) + 1;
-        
-        int leftHeight = minDepth(root.left);
-        int rightHeight = minDepth(root.right);
-        
-        return 1 + Math.min(leftHeight, rightHeight);
+        if(root == null)
+			return 0;
+
+		int height = 1;
+		Queue<TreeNode> q = new LinkedList<>();
+		q.offer(root);
+
+		while(!q.isEmpty()) {
+			int size = q.size();
+
+			for(int i=0; i<size; i++) {
+				TreeNode curr = q.poll();
+
+				if(curr.left == null && curr.right == null) {
+					return height;
+				}
+
+				if(curr.left != null) q.offer(curr.left);
+				if(curr.right != null) q.offer(curr.right);
+			}
+			height++;
+		}
+		return height;
     }
 }
