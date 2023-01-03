@@ -25,6 +25,7 @@ class Solution {
         if(root == null) {
             return true;
         }
+        
         long curr = root.val;
         
         if(curr >= min && curr <= max) {
