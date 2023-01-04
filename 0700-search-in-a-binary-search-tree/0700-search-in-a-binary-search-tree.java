@@ -14,12 +14,29 @@
  * }
  */
 class Solution {
-    public TreeNode searchBST(TreeNode root, int val) {
+    public TreeNode searchBST(TreeNode root, int target) {
+        
+        //case 1: root is null
         if(root == null) {
             return root;
         }
         
-        Queue<TreeNode> q = new LinkedList<>();
+        //case 2: root itself is the target
+        if(root.val == target) {
+            return root;
+        }
+        
+        //case 3: target is less than root(search in left subtree)
+        if(root.val> target) {
+            return searchBST(root.left, target);
+        }
+        
+        //case 4: target is greater than root(search in right subtree)
+        return searchBST(root.right, target);
+    }
+}
+
+    /*  Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
         
         while(!q.isEmpty()) {
@@ -38,5 +55,5 @@ class Solution {
             }
         }
         return null;
-    }
-}
+        
+        */
