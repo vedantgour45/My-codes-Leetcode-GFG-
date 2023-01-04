@@ -27,7 +27,7 @@ public class GfG {
 class Solution
 {
     public int firstElementKTime(int[] arr, int n, int k) { 
-        // int freq[] = new int[1000001];
+        // int freq[] = new int[100001];
         // for(int i=0; i<n; i++) {
         //     freq[a[i]]++;
         //     if(freq[a[i]]==k){
