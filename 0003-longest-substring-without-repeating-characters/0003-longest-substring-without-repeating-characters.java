@@ -13,7 +13,10 @@ class Solution {
             else if(map.size() < j - i + 1){
                 while(map.size() < j - i + 1){
                     map.put(s.charAt(i), map.get(s.charAt(i)) - 1);
-                    if(map.get(s.charAt(i)) == 0) map.remove(s.charAt(i));
+                    
+                    if(map.get(s.charAt(i)) == 0) {
+                        map.remove(s.charAt(i));
+                    }
                     i++;
                 }
                 j++;
