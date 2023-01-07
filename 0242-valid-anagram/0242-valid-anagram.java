@@ -4,6 +4,19 @@ class Solution {
             return false;
         }
         
+        int freq[] = new int[26];      // most optimised approach
+        
+        for(int i=0; i<s.length(); i++){
+            freq[s.charAt(i)-'a']++;
+            freq[t.charAt(i)-'a']--;
+        }
+        for(int i=0; i<26; i++){
+            if(freq[i]!=0){
+                return false;
+            }
+        }
+        return true;
+        
         /*BASIC APPROACH ----> O(NlogN)
         
         char[]a = s.toCharArray();
@@ -19,35 +32,24 @@ class Solution {
         return true;
         */
 
-                /* 2nd APPROACH ----> O(n)
+        /* 2nd APPROACH ----> O(n)
 
-                int freqs[] = new int[26];
-                int freqt[] = new int[26];
+        int freqs[] = new int[26];
+        int freqt[] = new int[26];
 
-                for(int i=0; i<s.length(); i++){
-                    freqs[s.charAt(i)-'a']++;
-                    freqt[t.charAt(i)-'a']++;
-                }
-                for(int i=0; i<26; i++){
-                    if(freqs[i]!=freqt[i]){
-                        return false;
-                    }
-                }
-                return true;
-                */
+        for(int i=0; i<s.length(); i++){
+            freqs[s.charAt(i)-'a']++;
+            freqt[t.charAt(i)-'a']++;
+        }
+        for(int i=0; i<26; i++){
+            if(freqs[i]!=freqt[i]){
+                return false;
+            }
+        }
+        return true;
+        */
         
-//         int freq[] = new int[26];      // most optimised approach
-        
-//         for(int i=0; i<s.length(); i++){
-//             freq[s.charAt(i)-'a']++;
-//             freq[t.charAt(i)-'a']--;
-//         }
-//         for(int i=0; i<26; i++){
-//             if(freq[i]!=0){
-//                 return false;
-//             }
-//         }
-//         return true;
+        /* 3rd APPROACH ----> using HashMap
         
         HashMap<Character, Integer> hm = new HashMap<>();
         for(int i=0; i<s.length(); i++) {
@@ -64,5 +66,6 @@ class Solution {
             }
         }
         return true;
+        */
     }
 }
