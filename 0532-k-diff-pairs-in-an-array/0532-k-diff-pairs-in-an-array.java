@@ -1,31 +1,31 @@
 class Solution {
     public int findPairs(int[] arr, int k) {
         
-        HashMap<Integer, Integer> hm = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         
         int n = arr.length;
         
         for(int i=0; i<n; i++) {
-            hm.put(arr[i], hm.getOrDefault(arr[i], 0)+1);
+            map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
         }
         
-        int ans = 0;
+        int pairCount = 0;
         
         if(k==0) {
-            for(int key : hm.keySet()) {
-                if(hm.get(key) > 1) {
-                    ans++;
+            for(int i : map.keySet()) {
+                if(map.get(i) > 1) {
+                    pairCount++;
                 }
             }
-        } 
-        else {
-            for(int key : hm.keySet()) {
-                if(hm.containsKey(key + k)) {
-                    ans++;
+            
+        } else {
+            for(int i : map.keySet()) {
+                if(map.containsKey(i+k)) {
+                    pairCount++;
                 }
             }
         }
         
-        return ans;
+        return pairCount;
     }
 }
