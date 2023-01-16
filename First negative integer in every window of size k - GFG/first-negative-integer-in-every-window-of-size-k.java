@@ -38,24 +38,55 @@ class GFG {
 
 
 // } Driver Code Ends
-
-
 //User function Template for Java
-
 
 class Compute {
     public long[] printFirstNegativeInteger(long arr[], int n, int k) {
-        long[] ans = new long[n-k+1];
         
-        for(int i=0; i<=n-k; i++) {
-            for(int j=i; j<i+k; j++) {
-                if(arr[j] < 0) {
-                    ans[i] = arr[j];
-                    break;
+        long[] ans = new long[n-k+1];
+        Queue<Long> q = new LinkedList<>();
+        
+        int i=0, j=0;
+        
+        while(j<n) {
+            
+            //add the negative number to the queue
+            if(arr[j]<0) q.add(arr[j]);
+
+            //if the window is less than k --> keep moving j
+            if(j-i+1 < k) j++;
+            
+            //if the window is equal to k calculate ans and slide the window
+            else if(j-i+1 == k) {
+                
+                //if the queqe is not empty--> 1st element is the 1st -ve
+                if(!q.isEmpty()) {
+                    ans[i] = q.peek();
+                    if(arr[i] == q.peek()) q.poll();
+                } 
+                
+                //if the queue is empty then --> ans is 0;
+                else {
+                    ans[i] = 0;
                 }
+                
+                //slide the window
+                i++;
+                j++;
             }
         }
         return ans;
-        
     }
 }
+
+/*
+for(int i=0; i<=n-k; i++) {
+    for(int j=i; j<i+k; j++) {
+        if(arr[j] < 0) {
+            ans[i] = arr[j];
+            break;
+        }
+    }
+}
+return ans;
+*/
