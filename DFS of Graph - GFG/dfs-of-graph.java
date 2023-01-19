@@ -36,25 +36,24 @@ class GFG {
 
 class Solution {
     
-    public void DFS(int src, ArrayList<ArrayList<Integer>> adj, boolean[] visited, ArrayList<Integer> ans) { 
-        ans.add(src);
+    public void BFS(int src, ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> ansList, boolean[] visited) {
+        ansList.add(src);
         visited[src] = true;
         
-        for(int nbr : adj.get(src)) {
-            if(visited[nbr] == false) {
-				DFS(nbr, adj, visited, ans);
-			}
+        for(int neighbour : adj.get(src)) {
+            if(visited[neighbour] == false) {
+                BFS(neighbour, adj, ansList, visited);
+            }
         }
     }
     
     public ArrayList<Integer> dfsOfGraph(int vertices, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        ArrayList<Integer> ans = new ArrayList<>();
-        boolean[] visited = new boolean[adj.size()];
-        int src = 0; //start as give in question
+        ArrayList<Integer> ansList = new ArrayList<>();
+        boolean[] visited = new boolean[vertices];
+        int source = 0;
+        BFS(source, adj, ansList, visited);
         
-        DFS(src, adj, visited, ans);
-        
-        return ans;
+        return ansList;
     }
 }
