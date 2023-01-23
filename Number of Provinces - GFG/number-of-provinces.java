@@ -45,15 +45,15 @@ class Solution {
 		
     
     static int numProvinces(ArrayList<ArrayList<Integer>> adj, int vertices) {
-        int components = 0;
+        int province = 0;
 		boolean[] visited = new boolean[vertices];
 
 		for(int i=0; i<vertices; i++) {
 			if(visited[i]==false) {
 				dfs(i, adj, visited);
-				components++;
+				province++;
 			}
 		}
-		return components;
+		return province;
     }
 };
