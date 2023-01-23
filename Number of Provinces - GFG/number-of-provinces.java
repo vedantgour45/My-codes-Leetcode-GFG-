@@ -33,45 +33,27 @@ class GFG {
 
 class Solution {
     
-    static void DFS(int src, ArrayList<ArrayList<Integer>> adjList, boolean visited[]) {
-        visited[src] = true;
-        
-        for(int n : adjList.get(src)) {
-            if(visited[n] == false){
-                DFS(n, adjList, visited);
-            }
-        }
+    static void dfs(int src, ArrayList<ArrayList<Integer>> adj, boolean[] visited) {
+		visited[src] = true;
+
+		for(int nbr=0; nbr<adj.size(); nbr++) {
+			if(adj.get(src).get(nbr) == 1 && visited[nbr] == false) {
+				dfs(nbr, adj, visited);
+			}
+		}
     }
+		
     
     static int numProvinces(ArrayList<ArrayList<Integer>> adj, int vertices) {
-        // code here
-        ArrayList<ArrayList<Integer>> adjList = new ArrayList<ArrayList<Integer>>();
-        
-        for(int i=0; i<vertices; i++) {
-            adjList.add(new ArrayList<Integer>());
-        }
-        
-        // given input is a list of list i.e. 2D array
-        // we need to change it into adjecency list;
-        
-        for(int i=0; i<vertices; i++) {
-            for(int j=0; j<vertices; j++) {
-                if(adj.get(i).get(j)==1 && i!=j) {
-                    adjList.get(i).add(j);
-                    adjList.get(j).add(i);
-                }
-            }
-        }
-        
-        boolean visited[] = new boolean[vertices];
-        int count = 0;
-        
-        for(int i=0; i<vertices; i++) {
-            if(visited[i] == false) {
-                count++;
-                DFS(i, adjList, visited);
-            }
-        }
-        return count;
+        int components = 0;
+		boolean[] visited = new boolean[vertices];
+
+		for(int i=0; i<vertices; i++) {
+			if(visited[i]==false) {
+				dfs(i, adj, visited);
+				components++;
+			}
+		}
+		return components;
     }
 };
