@@ -76,7 +76,6 @@ class Solution {
             graph[v].add(u);
         }
         
-        int[] ans = bfs(graph, src);
-        return ans;
+        return bfs(graph, src);
     }
 }
