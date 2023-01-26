@@ -1,11 +1,12 @@
 class Solution {
     
     public static void DFS(int src, ArrayList<Integer>[] adjList, boolean visited[]) {
+        
         visited[src] = true;
         
-        for(int n : adjList[src]) {
-            if(visited[n] == false){
-                DFS(n, adjList, visited);
+        for(int nbr : adjList[src]) {
+            if(visited[nbr] == false){
+                DFS(nbr, adjList, visited);
             }
         }
     }
