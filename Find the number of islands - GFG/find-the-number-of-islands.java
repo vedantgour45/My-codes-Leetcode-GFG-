@@ -29,6 +29,28 @@ class GFG {
 
 class Solution {
     
+    private int[] dr = {-1, -1, 0, 1, 1, 1, 0, -1};
+    private int[] dc = {0, 1, 1, 1, 0, -1, -1, -1};
+
+    private void dfs(int r, int c, char[][] grid, boolean[][] visited) {
+
+        int row = grid.length;
+        int col = grid[0].length;
+
+        visited[r][c] = true;
+
+        for(int i=0; i<8; i++) {
+            int nr = r + dr[i];
+            int nc = c + dc[i];
+
+            if(nr<0 || nr>=row || nc<0 || nc>=col) continue;
+
+            if(visited[nr][nc]==false && grid[nr][nc]=='1') {
+                dfs(nr, nc, grid, visited);
+            }
+        }
+    }
+    
     public void bfs(int row, int col, char[][] grid, boolean[][] visited) {
         visited[row][col] = true;
         Queue<int[]> q = new LinkedList<>();
@@ -70,7 +92,8 @@ class Solution {
             for(int j=0; j<m; j++) {
                 if(visited[i][j] == false && grid[i][j] == '1') {
                     island++;
-                    bfs(i, j, grid, visited);
+                    //bfs(i, j, grid, visited);
+                    dfs(i, j, grid, visited);
                 }
             }
         }
