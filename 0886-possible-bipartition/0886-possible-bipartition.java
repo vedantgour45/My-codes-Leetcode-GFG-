@@ -1,5 +1,19 @@
 class Solution {
     
+    private boolean dfs(int src, ArrayList<Integer>[] graph, boolean[] visited, int[] color, int c) {
+		
+		visited[src] = true;
+		color[src] = c;
+
+		for(int nbr: graph[src]) {
+			if(visited[nbr] == false) {
+				if(!dfs(nbr, graph, visited, color, 1-c)) return false;
+			}
+			else if(visited[nbr] == true && color[nbr]==color[src]) return false;
+		}
+		return true;
+	}
+    
     private boolean bfs(int src, ArrayList<Integer>[] graph, boolean[] visited, int[] color) {
         
         Queue<Integer> q = new LinkedList<>();
@@ -43,7 +57,8 @@ class Solution {
         
         for(int i=0; i<vertices; i++) {
             if(visited[i] == false) {
-                if(!bfs(i, graph, visited, color)) return false;
+                //if(!bfs(i, graph, visited, color)) return false;
+                if(!dfs(i, graph, visited, color, 0)) return false;
             }
         }
         return true;
