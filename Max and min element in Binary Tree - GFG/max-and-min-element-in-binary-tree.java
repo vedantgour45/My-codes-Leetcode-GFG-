@@ -112,18 +112,20 @@ class Node {
 }
 */
 class Solution{
+    
     public static int findMax(Node root){
         //code here
         if(root.right == null) {
-		  return root.data;
-	    }
-	    return findMax(root.right);
+            return root.data;
+        }
+        return findMax(root.right);
     }
+    
     public static int findMin(Node root){
         //code here
         if(root.left == null) {
-		  return root.data;
-	    }
-	    return findMin(root.left);
+            return root.data;
+        }
+        return findMin(root.left);
     }
 }
