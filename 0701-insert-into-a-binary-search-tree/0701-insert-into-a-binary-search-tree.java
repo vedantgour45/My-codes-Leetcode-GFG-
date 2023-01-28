@@ -13,32 +13,49 @@
  *     }
  * }
  */
+
 class Solution {
-    public TreeNode insertIntoBST(TreeNode root, int val) {
+    public TreeNode insertIntoBST(TreeNode root, int insertVal) {
+        
+        if (root == null) {
+            return new TreeNode (insertVal);
+        }
+ 
+        if (insertVal < root.val) {
+            root.left = insertIntoBST(root.left, insertVal);
+        } else {
+            root.right = insertIntoBST(root.right, insertVal);
+        }
+ 
+        return root;
+        
+
+        /* Iterative
         if(root == null) {
-            return new TreeNode(val);
+            return new TreeNode(insertVal);
         }
         
         TreeNode curr = root;
         
-        //break is an imp statement here as we don't have end condition fro our while loop
         while(true) {
-            if(val < curr.val) {
+            if(insertVal < curr.val) {
                 if(curr.left == null) {
-                    curr.left = new TreeNode(val);
-                    break;      
+                    curr.left = new TreeNode(insertVal);
+                    break;
                 } else {
                     curr = curr.left;
                 }
             } else {
                 if(curr.right == null) {
-                    curr.right = new TreeNode(val);
+                    curr.right = new TreeNode(insertVal);
                     break;
                 } else {
                     curr = curr.right;
                 }
             }
         }
+        
         return root;
+        */
     }
 }
