@@ -25,7 +25,7 @@ class Solution {
             // sum exceeds k find number of subarrays having this sum and exclude
             // those subarrays from sum by increasing count by same amount.
             if (hm.containsKey(sum - k))
-            ans+=(hm.get(sum - k));
+                ans+=(hm.get(sum - k));
  
             // Increment Sum count
             hm.put(sum,hm.getOrDefault(sum, 0) +1);
