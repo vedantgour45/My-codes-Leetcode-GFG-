@@ -4,11 +4,11 @@ class Solution {
         int  n =nums.length;
         // replace all the odd numbers with 1
         // and all the even numbers with 0
-        for(int i=0; i<n; i++){
-            if(nums[i]%2 == 0){
+        for(int i=0; i<n; i++) {
+            if(nums[i]%2 == 0) {
                 nums[i] = 0;
             }
-            else{
+            else {
                 nums[i] = 1;
             }
         }
@@ -16,7 +16,7 @@ class Solution {
         
         int sum = 0;
         int ans = 0;
-        for(int i: nums){
+        for(int i: nums) {
             sum+=i;
             
             // If sum is equal to k
@@ -24,7 +24,7 @@ class Solution {
             
             // sum exceeds k find number of subarrays having this sum and exclude
             // those subarrays from sum by increasing count by same amount.
-            if (hm.containsKey(sum - k))
+            if(hm.containsKey(sum - k))
                 ans+=(hm.get(sum - k));
  
             // Increment Sum count
