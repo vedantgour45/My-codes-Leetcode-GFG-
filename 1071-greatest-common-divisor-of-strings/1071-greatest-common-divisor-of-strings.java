@@ -10,16 +10,16 @@ class Solution {
 
     public int getGCD(int a, int b) {
         
-        // if (b==0) return a;
-        // return getGCD(b,a%b);
+        if (b==0) return a;
+        return getGCD(b,a%b);
         
-        while(a % b != 0){
-            int remainder = a % b;
-            a = b;
-            b = remainder;
-        }
+//         while(a % b != 0){
+//             int remainder = a % b;
+//             a = b;
+//             b = remainder;
+//         }
         
-        int GCD = b;
-        return GCD;
+//         int GCD = b;
+//         return GCD;
     }
 }
