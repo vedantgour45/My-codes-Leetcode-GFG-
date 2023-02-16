@@ -8,68 +8,41 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-// class Solution {
-//     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
-//         ListNode dummy = new ListNode(0);
-//         ListNode curr = dummy;
-        
-//         int carry = 0;
-        
-//         while(l1 != null || l2 != null){
-            
-//             int sum = 0;
-            
-//             if(l1 != null){
-//                 sum += l1.val;
-//                 l1 = l1.next;
-//             }
-            
-//             if(l2 != null){
-//                 sum += l2.val;
-//                 l2 = l2.next;
-//             }
-            
-//             sum += carry;
-            
-//             // I should store sum % 10 in my new ListNode
-//             // Store (sum / 10) in carry variable for next iteration
-//             carry = sum / 10;
-//             ListNode n = new ListNode(sum % 10);
-
-//             // Add it next to curr ListNode
-//             curr.next = n;
-//             curr = curr.next;
-//         }
-        
-//         return dummy.next;
-//     }
-// }
-
-
 class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummy = new ListNode(0); // creating an dummy list
-        ListNode curr = dummy; // intialising an pointer
-        int carry = 0; // intialising our carry with 0 intiall
-        // while loop will run, until l1 OR l2 not reaches null OR if they both reaches null. But our carry has some value in it. 
-		// We will add that as well into our list
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        
+        int carry = 0;
+        
         while(l1 != null || l2 != null || carry == 1){
-            int sum = 0; // intialising our sum
-            if(l1 != null){ // adding l1 to our sum & moving l1
+            
+            int sum = 0;
+            
+            if(l1 != null){
                 sum += l1.val;
                 l1 = l1.next;
             }
-            if(l2 != null){ // adding l2 to our sum & moving l2
+            
+            if(l2 != null){
                 sum += l2.val;
                 l2 = l2.next;
             }
-            sum += carry; // if we have carry then add it into our sum
-            carry = sum/10; // if we get carry, then divide it by 10 to get the carry
-            ListNode node = new ListNode(sum % 10); // the value we'll get by moduloing it, will become as new node so. add it to our list
-            curr.next = node; // curr will point to that new node if we get
-            curr = curr.next; // update the current every time
+            
+            sum += carry;
+            
+            // I should store sum % 10 in my new ListNode
+            // Store (sum / 10) in carry variable for next iteration
+            carry = sum / 10;
+            ListNode n = new ListNode(sum % 10);
+
+            // Add it next to curr ListNode
+            curr.next = n;
+            curr = curr.next;
         }
-        return dummy.next; // return dummy.next bcz, we don't want the value we have consider in it intially!!
+        
+        return dummy.next;
     }
 }
+
