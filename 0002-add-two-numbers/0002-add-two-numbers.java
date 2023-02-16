@@ -9,79 +9,67 @@
  * }
  */
 // class Solution {
-//     public static ListNode addTwoNumbers(ListNode head1, ListNode head2) {
-//         ListNode l1 = reverse(head1);
-//         ListNode l2 = reverse(head2);
+//     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-//         ListNode dummy = new ListNode(-1);
-//         ListNode temp = dummy;
-//         int sum = 0, carry = 0;
+//         ListNode dummy = new ListNode(0);
+//         ListNode curr = dummy;
+        
+//         int carry = 0;
+        
 //         while(l1 != null || l2 != null){
-//             sum = sum/10;
+            
+//             int sum = 0;
+            
 //             if(l1 != null){
 //                 sum += l1.val;
 //                 l1 = l1.next;
 //             }
+            
 //             if(l2 != null){
 //                 sum += l2.val;
 //                 l2 = l2.next;
 //             }
+            
 //             sum += carry;
+            
 //             // I should store sum % 10 in my new ListNode
 //             // Store (sum / 10) in carry variable for next iteration
 //             carry = sum / 10;
 //             ListNode n = new ListNode(sum % 10);
 
-//             // Add it next to temp ListNode
-//             temp.next = n;
-//             temp = temp.next;
-//         }
-//         if(carry > 0) {
-//             ListNode n = new ListNode(carry);
-//             temp.next = n;
+//             // Add it next to curr ListNode
+//             curr.next = n;
+//             curr = curr.next;
 //         }
         
 //         return dummy.next;
-        
-//     }
-//     public static ListNode reverse(ListNode head) {
-//         ListNode prevNode = null;
-//         ListNode currNode = head;
-//         ListNode nextNode;
-        
-//         while(currNode!=null){
-//             nextNode = currNode.next;
-//             currNode.next = prevNode;
-            
-//             prevNode = currNode;
-//             currNode = nextNode;
-//         }
-//         return prevNode;
 //     }
 // }
 
-public class Solution {
+
+class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode c1 = l1;
-        ListNode c2 = l2;
-        ListNode sentinel = new ListNode(0);
-        ListNode d = sentinel;
-        int sum = 0;
-        while (c1 != null || c2 != null) {
-            sum /= 10;
-            if (c1 != null) {
-                sum += c1.val;
-                c1 = c1.next;
+        ListNode dummy = new ListNode(0); // creating an dummy list
+        ListNode curr = dummy; // intialising an pointer
+        int carry = 0; // intialising our carry with 0 intiall
+        // while loop will run, until l1 OR l2 not reaches null OR if they both reaches null. But our carry has some value in it. 
+		// We will add that as well into our list
+        while(l1 != null || l2 != null || carry == 1){
+            int sum = 0; // intialising our sum
+            if(l1 != null){ // adding l1 to our sum & moving l1
+                sum += l1.val;
+                l1 = l1.next;
             }
-            if (c2 != null) {
-                sum += c2.val;
-                c2 = c2.next;
+            if(l2 != null){ // adding l2 to our sum & moving l2
+                sum += l2.val;
+                l2 = l2.next;
             }
-            d.next = new ListNode(sum % 10);
-            d = d.next;
+            sum += carry; // if we have carry then add it into our sum
+            carry = sum/10; // if we get carry, then divide it by 10 to get the carry
+            ListNode node = new ListNode(sum % 10); // the value we'll get by moduloing it, will become as new node so. add it to our list
+            curr.next = node; // curr will point to that new node if we get
+            curr = curr.next; // update the current every time
         }
-        if (sum / 10 == 1)
-            d.next = new ListNode(1);
-        return sentinel.next;
+        return dummy.next; // return dummy.next bcz, we don't want the value we have consider in it intially!!
     }
 }
