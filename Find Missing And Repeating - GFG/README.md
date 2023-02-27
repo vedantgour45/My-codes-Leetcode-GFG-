@@ -1,6 +1,6 @@
 # Find Missing And Repeating
 ## Medium
-<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an unsorted array <strong>Arr</strong> of size <strong>N</strong> of positive integers. <strong>One number 'A'</strong> from set {1, 2, …N} is missing and <strong>one number 'B'</strong> occurs twice in array. Find these two numbers.</span></p>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an unsorted array <strong>Arr</strong> of size <strong>N</strong> of positive integers. <strong>One number 'A'</strong> from set {1, 2, N} is missing and <strong>one number 'B'</strong> occurs twice in array. Find these two numbers.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
@@ -29,6 +29,6 @@ You don't need to read input or print anything. Your task is to complete the fun
 <strong>Expected Auxiliary Space:</strong>&nbsp;O(1)</span></p>
 
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
-1 ≤ N ≤ 10<sup>5</sup><br>
+2 ≤ N ≤ 10<sup>5</sup><br>
 1 ≤ Arr[i] ≤ N</span></p>
 </div>
