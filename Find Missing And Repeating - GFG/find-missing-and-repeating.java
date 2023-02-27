@@ -29,15 +29,19 @@ class GFG {
 
 // User function Template for Java
 
+
 class Solve {
     int[] findTwoElement(int arr[], int n) {
+        
         //ans array
         int ans[] = new int[2];
+        
         //freq array
         int[] freq = new int[n+1];
         for(int i=0; i<n; i++) {
             freq[arr[i]]++;
         }
+        
         int repeating = 0;
         int missing = 0;
         
