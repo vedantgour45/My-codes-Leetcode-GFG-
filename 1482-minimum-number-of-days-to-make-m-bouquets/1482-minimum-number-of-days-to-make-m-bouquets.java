@@ -1,30 +1,28 @@
 class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
+        
         int n = bloomDay.length;
-        if (m*k> n)
-            return -1;
+        
+        // base case
+        if (m*k> n) return -1;
         
         int ans=-1;
-        
-        /*  Main Idea: m subarrays (bouquets) of size k, and we need to minimize the maximum value in these sub-arrays
-         -> if above condition (m*k> len) is false, we are guaranteed an answer. 
-            Also, we know the answer lies between the maximum and minimum value in our bloom-array, and since the answer is guaranteed we can check the feasibility (which means searching will be involved) and depending on that change our search space.
-         -> So we might be able to use Binary Search instead of checking for each element of the array.
-         
-         Let's think*/
+
+        // low is minimim from the array
         int low = Integer.MAX_VALUE;
-        for (int i = 0; i < n; i++) {
+        for (int i=0; i<n; i++) {
             low = Math.min(low, bloomDay[i]);
         }
         
+        // high is maximum from the array
         int high = low;
-        for (int i = 0; i < n; i++) {
+        for (int i=0; i<n; i++) {
             high = Math.max(high, bloomDay[i]);
         }
         
-        while (low<=high)
-        {
-            int mid= low+ (high-low)/2; // Possible result
+        //binary search
+        while (low <= high) {
+            int mid= (low + high)/2; // Possible result
             
             // Check if it is possible?
             if (isPossible(bloomDay, mid, m, k)){   
