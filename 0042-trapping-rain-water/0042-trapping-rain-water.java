@@ -1,5 +1,5 @@
 class Solution {
-    public int trap(int[] height) {
+    public int trap(int[] height) { //tc => O(n)
 
         int n = height.length;
         
