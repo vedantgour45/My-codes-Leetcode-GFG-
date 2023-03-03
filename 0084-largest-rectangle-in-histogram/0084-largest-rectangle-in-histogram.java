@@ -9,9 +9,9 @@ class Solution {
                 st.pop();
             }
             if(!st.empty()){
-                ans[i] = st.peek(); // index of next Smaller element
+                ans[i] = st.peek(); // index of next Smaller element 
             }
-            else { // arr[i] doesn't have Next smaller element
+            else { // arr[i] doesn't have Next smaller element then we have top go all the way till n
                 ans[i] = n; // MOST IMPORTANT
             }
             st.push(i);
@@ -30,19 +30,21 @@ class Solution {
             if(!st.empty()){
                 ans[i] = st.peek(); // index of next Smaller element
             }
-            else { // arr[i] doesn't have previous smaller element
-                ans[i] = -1; // MOST IMPORTANT
+            else { // arr[i] doesn't have previous smaller element then we have top go all the way till -1
+                ans[i] = -1; // MOST IMPORTANT 
             }
             st.push(i);
         }
         return ans;
-      }
+    }
     
     public int largestRectangleArea(int[] heights) {
+        
         int n = heights.length;
         int nexts[] = nextSmaller(heights, n);
         int prevs[] = prevSmaller(heights, n);
         int ans = Integer.MIN_VALUE;
+        
         for(int i = 0; i < n; i++) {
             ans = Math.max(ans, (nexts[i] - prevs[i] - 1) * heights[i]);
         }
@@ -50,9 +52,8 @@ class Solution {
     }
 }
 
-
-
 /*
+//samraat sir
 
         int area = 0;
         int n=heights.length;
