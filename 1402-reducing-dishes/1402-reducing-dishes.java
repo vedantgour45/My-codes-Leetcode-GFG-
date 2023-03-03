@@ -7,7 +7,7 @@ class Solution {
         int total = 0;
         int n = satisfaction.length;
         
-        for (int i=n-1; i>=0; --i) {
+        for (int i=n-1; i>=0; i--) {
             if(satisfaction[i] > -total) {
                 total += satisfaction[i];
                 res += total;
