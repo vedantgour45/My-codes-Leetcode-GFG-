@@ -22,11 +22,13 @@ class Solution {
         
         //binary search
         while (low <= high) {
-            int mid= (low + high)/2; // Possible result
+            
+            int mid = (low + high)/2; // Possible result
             
             // Check if it is possible?
             if (isPossible(bloomDay, mid, m, k)){   
                 ans= mid;
+                
                 high= mid-1; // Lets check for a lesser possible answer
             }
             else
@@ -36,22 +38,20 @@ class Solution {
         return ans;
     }
     
-    public boolean isPossible(int arr[], int mid, int bouquets, int k) 
-    {   
+    public boolean isPossible(int arr[], int mid, int bouquets, int k) {   
+        
         int flowers=0;
         int boqs=0;
 
-        for (int i=0; i<arr.length; i++)
-        {
-            if (arr[i]>mid) // Implies flower hasn't bloomed so can not be a part of subarray, so count set to 0
-                flowers=0; // Since adjacent
+        for (int i=0; i<arr.length; i++) {
             
-            else 
-            // We need to check if the number of flowers is k(indicates size of curr subarray)
-            {
-                flowers++; // Count of elements/ flowers in subarray/ bouquets (adjacent)
-                if (flowers==k)
-                    {
+            if (arr[i]>mid) // Implies flower hasn't bloomed so can not be a part of subarray, so count set to 0
+                flowers=0;  // Since adjacent
+            
+            else {          // We need to check if the number of flowers is k(indicates size of curr subarray)
+                flowers++;  // Count of elements/ flowers in subarray/ bouquets (adjacent)
+                
+                if(flowers==k) {
                     boqs++; // Count of bouquets
                     flowers=0; 
                 }
@@ -60,6 +60,7 @@ class Solution {
             }
             
         }
+        
         if (boqs>= bouquets) // We can make m bouquets
             return true;
         else 
