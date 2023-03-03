@@ -1,10 +1,9 @@
 class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
-         //  m*k= Number of flowers required that is should be <= n (bloomDay.length)
-        //  k: is also the length of the subarray (flowers for bouquet)
-        
-        if (m*k> bloomDay.length)
+        int n = bloomDay.length;
+        if (m*k> n)
             return -1;
+        
         int ans=-1;
         
         /*  Main Idea: m subarrays (bouquets) of size k, and we need to minimize the maximum value in these sub-arrays
@@ -13,8 +12,15 @@ class Solution {
          -> So we might be able to use Binary Search instead of checking for each element of the array.
          
          Let's think*/
-         int low=0;
-         int high= (int)Math.pow(10,9); // Also can find the max and min values from the array
+        int low = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            low = Math.min(low, bloomDay[i]);
+        }
+        
+        int high = low;
+        for (int i = 0; i < n; i++) {
+            high = Math.max(high, bloomDay[i]);
+        }
         
         while (low<=high)
         {
