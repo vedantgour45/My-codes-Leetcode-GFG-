@@ -1,5 +1,5 @@
 class Solution {
-    public int[] maxSlidingWindow(int[] nums, int k) {
+    public int[] maxSlidingWindow(int[] nums, int k) { // TC--> O(n)
         
         int n = nums.length;
         
