@@ -3,7 +3,7 @@ class Solution {
         
         int n = nums.length;
         
-        if (n == 0 || k == 0) {
+        if (n == 0 || k == 0) { //no chance to slide the window
             return new int[0];
         }
         
