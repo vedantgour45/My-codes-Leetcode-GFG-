@@ -1,35 +1,46 @@
 class Solution {
-    public int[] maxSlidingWindow(int[] nums, int k) { // TC--> O(n)
+    public int[] maxSlidingWindow(int[] nums, int k) { 
+        Stack<Integer> st=new Stack<>();
+        int n=nums.length;
         
-        int n = nums.length;
+        int[] ngr=new int[n];
         
-        if (n == 0 || k == 0) {
-            return new int[0];
+        ngr[n-1]=n;
+        st.push(n-1);
+        
+        for(int i=n-2; i>=0; i--){
+            int ele=nums[i];
+            
+            while(st.size()>0 && nums[st.peek()]<=ele){
+                st.pop();
+            }
+            
+            if(st.size()==0){
+                ngr[i]=n;
+            } else {
+                ngr[i]=st.peek();
+            }
+            
+            st.push(i);
         }
         
-        int[] result = new int[n - k + 1];
+        int[] ans=new int[n-k+1];
         
-        Deque<Integer> deque = new ArrayDeque<>(); // to store indices of nums
-        
-        for (int i = 0; i < n; i++) {
+        int j=0;
+        for(int i=0; i<n-k+1; i++){
+            if(j<i){
+                j=i;
+            }
+            // window ending point
+            int ep=i+k-1;
             
-            // remove elements from deque that are outside the window
-            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
-                deque.pollFirst();
+            while(ngr[j]<=ep){
+                j=ngr[j];
             }
             
-            // remove elements from deque that are smaller than the current element
-            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
-                deque.pollLast();
-            }
-            
-            deque.offerLast(i); // add current element's index to deque
-            
-            // add the maximum element in the current window to result
-            if (i >= k - 1) {
-                result[i - k + 1] = nums[deque.peekFirst()];
-            }
+            ans[i]=nums[j];
         }
-        return result;
+        
+        return ans;
     }
 }
