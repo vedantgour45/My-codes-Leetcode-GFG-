@@ -12,7 +12,7 @@ class Solution {
 
         int max = 0;
         
-        for (int i = cur; i < s.length(); i++) {
+        for (int i=cur; i<s.length(); i++) {
             
             String word = s.substring(cur, i+1);
             
