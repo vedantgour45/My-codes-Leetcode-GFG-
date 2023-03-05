@@ -14,14 +14,18 @@ class Solution {
 
         int l = 0;  //index
         
-        //keep moving forward if the freq of the character is greater than or equal to k
+        /*keep moving forward if the freq of the character 
+        is greater than or equal to k*/
         while(l < n && map.get(s.charAt(l)) >= k) l++;
         
-        // if we have reached at the end of the string that means every character occours atleat k times and we can ditectly return l i.e. the entire length
+        /*if we have reached at the end of the string that means 
+        every character occours atleat k times 
+        and we can ditectly return l i.e. the entire length*/
         if(l >= n-1) return l; 
         int ls1 = longestSubstring(s.substring(0, l), k);
         
-        // it is possible that we encounter such characters which are less than k times and we need to skip them all
+        /*it is possible that we encounter such characters 
+        which are less than k times and we need to skip them all*/
         while(l < n && map.get(s.charAt(l)) < k) l++; 
         
         int ls2;
