@@ -1,30 +1,32 @@
 class Solution {
     public int longestSubstring(String s, int k) {
-        if (s == null || s.isEmpty() || k > s.length()) {
-            return 0;
-        }
-        int[] countMap = new int[26];
+        
         int n = s.length();
-        int result = 0;
-        for (int start = 0; start < n; start++) {
-            // reset the count map
-            Arrays.fill(countMap, 0);
-            for (int end = start; end < n; end++) {
-                countMap[s.charAt(end) - 'a']++;
-                if (isValid(s, start, end, k, countMap)) {
-                    result = Math.max(result, end - start + 1);
-                }
-            }
-        }
-        return result;
-    }
+        
+        if(n == 0 || n < k) return 0;
+        if(k <= 1) return n;
 
-    private boolean isValid(String s, int start, int end, int k, int[] countMap) {
-        int countLetters = 0, countAtLeastK = 0;
-        for (int freq : countMap) {
-            if (freq > 0) countLetters++;
-            if (freq >= k) countAtLeastK++;
+        Map<Character, Integer> map = new HashMap<>();
+        
+        for(char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1); 
         }
-        return countAtLeastK == countLetters;
+
+        int l = 0;
+        
+        while(l < n && map.get(s.charAt(l)) >= k) l++;
+        if(l >= n-1) return l;
+        int ls1 = longestSubstring(s.substring(0, l), k);
+        
+        while(l < n && map.get(s.charAt(l)) < k) l++;
+        
+        int ls2;
+        if (l < n) {
+            ls2 = longestSubstring(s.substring(l), k);
+        } else {
+            ls2 = 0;
+        }
+        
+        return Math.max(ls1, ls2);
     }
 }
