@@ -13,17 +13,16 @@ class Solution {
         ListNode dummy = new ListNode(-1);
         ListNode prev = dummy;
         
-        while(head != null && head.next != null) {
-            prev.next = head;
-            head = head.next;
-            
-            while(head != null && head.val != 0) {
-                prev.next.val += head.val;
-                head = head.next;
+        int sum = 0;
+        while(head!=null){
+            if(head.val==0 && sum!=0){
+                prev.next = new ListNode(sum);
+                prev = prev.next;
+                sum = 0;
             }
-            prev = prev.next;
+            sum += head.val;
+            head = head.next;
         }
-        prev.next = null;
         return dummy.next;
     }
 }
