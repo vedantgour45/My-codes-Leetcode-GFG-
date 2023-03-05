@@ -12,13 +12,17 @@ class Solution {
             map.put(c, map.getOrDefault(c, 0) + 1); 
         }
 
-        int l = 0;
+        int l = 0;  //index
         
+        //keep moving forward if the freq of the character is greater than or equal to k
         while(l < n && map.get(s.charAt(l)) >= k) l++;
-        if(l >= n-1) return l;
+        
+        // if we have reached at the end of the string that means every character occours atleat k times and we can ditectly return l i.e. the entire length
+        if(l >= n-1) return l; 
         int ls1 = longestSubstring(s.substring(0, l), k);
         
-        while(l < n && map.get(s.charAt(l)) < k) l++;
+        // it is possible that we encounter such characters which are less than k times and we need to skip them all
+        while(l < n && map.get(s.charAt(l)) < k) l++; 
         
         int ls2;
         if (l < n) {
