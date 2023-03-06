@@ -10,6 +10,7 @@ class Solution {
                 one = true;
             }
             //out of range
+            //This is done to mark elements that are out of range and to manage the presence of 1 in the array.
             if(arr[i]<1 || arr[i]>n){
                 arr[i]=1;
             }
